@@ -18,6 +18,9 @@ export async function configurationGenerator(
   project.targets ??= {};
   project.targets[options.targetName] = {
     executor: 'nx-plugin-typebox:extract-schema',
+    inputs: ['production', '^production', '!{projectRoot}/**/schema.json'],
+    outputs: ['{projectRoot}/**/schema.json'],
+    cache: true,
   };
 
   if (project.targets['build']) {
