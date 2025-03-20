@@ -1,4 +1,6 @@
 {
+  "title": "Extract Schema Executor",
+  "description": "Extracts the JSON schema from the schema file.",
   "type": "object",
   "properties": {
     "exportName": {

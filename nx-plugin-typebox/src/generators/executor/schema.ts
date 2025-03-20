@@ -16,12 +16,18 @@ export const JSONSchema = Type.Composite([
   unitTestRunner,
   skipFormat,
   skipLintChecks,
-  Type.Object({
-    includeHasher: Type.Boolean({
-      default: false,
-      description: 'Should the boilerplate for a custom hasher be generated?',
-    }),
-  }),
+  Type.Object(
+    {
+      includeHasher: Type.Boolean({
+        default: false,
+        description: 'Should the boilerplate for a custom hasher be generated?',
+      }),
+    },
+    {
+      title: 'Executor Generator',
+      description: 'Generates an executor setup with typebox for a plugin.',
+    }
+  ),
 ]);
 
 export type ExecutorGeneratorSchema = Static<typeof JSONSchema>;

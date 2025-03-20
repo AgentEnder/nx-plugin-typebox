@@ -19,10 +19,10 @@ export async function executorGenerator(
   const projectName = findProjectByInnerPath(tree, executorRootPath);
   const config = await ensureConfiguration(tree, projectName);
 
-  const { artifactName: generatorName } =
+  const { artifactName: executorName } =
     await determineArtifactNameAndDirectoryOptions(tree, options);
 
-  const { className } = names(generatorName);
+  const { className, fileName } = names(executorName);
 
   const task = await nxExecutorGenerator(tree, {
     ...options,
@@ -41,6 +41,19 @@ export async function executorGenerator(
     
     export type ${className}ExecutorSchema = typeof ${config.exportName};`
   );
+
+  if (config.schemaFile !== 'schema.ts') {
+    const implPath = joinPathFragments(executorRootPath, `${fileName}.ts`);
+    const executorSourceContents = tree.read(implPath, 'utf-8');
+
+    tree.write(
+      implPath,
+      executorSourceContents.replace(
+        './schema',
+        `./${config.schemaFile.split('.').slice(0, -1).join('.')}`
+      )
+    );
+  }
 
   if (!options.skipFormat) {
     await formatFiles(tree);

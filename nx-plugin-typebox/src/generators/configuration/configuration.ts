@@ -23,6 +23,16 @@ export async function configurationGenerator(
     cache: true,
   };
 
+  if (options.schemaFile) {
+    project.targets[options.targetName].options ??= {};
+    project.targets[options.targetName].options.schemaFile = options.schemaFile;
+  }
+
+  if (options.exportName) {
+    project.targets[options.targetName].options ??= {};
+    project.targets[options.targetName].options.exportName = options.exportName;
+  }
+
   if (project.targets['build']) {
     project.targets['build'].dependsOn ??= [];
     project.targets['build'].dependsOn = [
@@ -57,9 +67,9 @@ export async function ensureConfiguration(tree: Tree, projectName: string) {
     });
   }
 
-  const targetConfig = readProjectConfiguration(tree, projectName).targets?.[
-    targetName
-  ];
+  const targetConfig =
+    readProjectConfiguration(tree, projectName).targets?.[targetName]
+      ?.options ?? {};
 
   return Value.Parse(ExtractSchemaExecutorSchema, targetConfig);
 }

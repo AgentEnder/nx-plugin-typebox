@@ -29,7 +29,7 @@ export async function generatorGenerator(
   const { artifactName: generatorName } =
     await determineArtifactNameAndDirectoryOptions(tree, options);
 
-  const { className } = names(generatorName);
+  const { className, fileName } = names(generatorName);
 
   const task = await nxGeneratorGenerator(tree, {
     ...options,
@@ -48,6 +48,19 @@ export async function generatorGenerator(
   
   export type ${className}GeneratorSchema = Static<typeof ${config.exportName}>;`
   );
+
+  if (config.schemaFile !== 'schema.ts') {
+    const implPath = joinPathFragments(generatorRootPath, `${fileName}.ts`);
+    const generatorSourceContents = tree.read(implPath, 'utf-8');
+
+    tree.write(
+      implPath,
+      generatorSourceContents.replace(
+        './schema',
+        `./${config.schemaFile.split('.').slice(0, -1).join('.')}`
+      )
+    );
+  }
 
   if (!options.skipFormat) {
     await formatFiles(tree);

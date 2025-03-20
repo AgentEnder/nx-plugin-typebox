@@ -1,4 +1,6 @@
 {
+  "title": "Generator Generator",
+  "description": "Generates a generator setup with typebox for a plugin.",
   "type": "object",
   "properties": {
     "path": {

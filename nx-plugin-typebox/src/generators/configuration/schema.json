@@ -14,6 +14,14 @@
       "default": "extract-schema",
       "type": "string"
     },
+    "schemaFile": {
+      "description": "The name of the file to write the typebox schema into.",
+      "type": "string"
+    },
+    "exportName": {
+      "description": "The name of the export in the schema file which contains the raw JSON schema.",
+      "type": "string"
+    },
     "skipFormat": {
       "description": "Skip formatting files.",
       "default": false,
