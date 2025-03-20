@@ -31,6 +31,9 @@ const runExecutor: PromiseExecutor<ExtractSchemaExecutorSchema> = async (
   let overallTotal = 0;
   let overallChanged = 0;
 
+  const tsx: typeof import('tsx/cjs/api') = require('tsx/cjs/api');
+  const unregister = tsx.register();
+
   if (generators) {
     const { total, changed } = extractSchemaForCollectionFile(
       options,
@@ -49,6 +52,8 @@ const runExecutor: PromiseExecutor<ExtractSchemaExecutorSchema> = async (
     overallTotal += total;
     overallChanged += changed;
   }
+
+  unregister();
 
   if (overallTotal === 0) {
     logger.warn(
@@ -107,12 +112,18 @@ function extractSchemaForCollectionFile<T extends 'generators' | 'executors'>(
           );
         }
         total += 1;
+        let shouldUpdate = false;
         if (existsSync(schemaPath)) {
           const existingSchema = readJsonFile(schemaPath);
           if (JSON.stringify(existingSchema) !== JSON.stringify(schemaExport)) {
-            changed += 1;
-            writeJsonFile(schemaPath, schemaExport);
+            shouldUpdate = true;
           }
+        } else {
+          shouldUpdate = true;
+        }
+        if (shouldUpdate) {
+          changed += 1;
+          writeJsonFile(schemaPath, schemaExport);
         }
       } catch (err) {
         if (err.code === 'MODULE_NOT_FOUND') {

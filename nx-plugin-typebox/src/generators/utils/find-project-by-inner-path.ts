@@ -7,7 +7,7 @@ export function findProjectByInnerPath(
 ): string | undefined {
   const projects = getProjects(tree);
   const projectRootMap = new Map(
-    Object.entries(projects).map(([k, v]) => [v.root, k])
+    [...projects.entries()].map(([k, v]) => [v.root, k])
   );
 
   let current = innerPath;

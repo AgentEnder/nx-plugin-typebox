@@ -12,12 +12,12 @@ configuration generator
 
 - (string): The name of the plugin project to setup.
 
-### <span className="required">skipFormat</span>
-
-- (boolean): Skip formatting files.
-
 ### <span className="required">targetName</span>
 
 - (string)
 
 Default: `"extract-schema"`
+
+### skipFormat
+
+- (boolean): Skip formatting files.

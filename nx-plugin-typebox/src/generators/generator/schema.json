@@ -42,10 +42,6 @@
     }
   },
   "required": [
-    "path",
-    "description",
-    "unitTestRunner",
-    "skipFormat",
-    "skipLintChecks"
+    "path"
   ]
 }

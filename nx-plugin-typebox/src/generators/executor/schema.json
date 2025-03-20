@@ -48,10 +48,6 @@
   },
   "required": [
     "path",
-    "description",
-    "unitTestRunner",
-    "skipFormat",
-    "skipLintChecks",
     "includeHasher"
   ]
 }

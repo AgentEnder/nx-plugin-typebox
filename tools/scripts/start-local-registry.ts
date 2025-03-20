@@ -3,6 +3,7 @@
  * It is meant to be called in jest's globalSetup.
  */
 
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="registry.d.ts" />
 
 import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
