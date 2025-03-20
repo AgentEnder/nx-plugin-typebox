@@ -1,14 +1,19 @@
 {
   "name": "nx-plugin-typebox",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agentender/nx-plugin-typebox"
+  },
   "type": "commonjs",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "@nx/devkit": "20.6.2",
-    "tslib": "^2.3.0",
-    "@sinclair/typebox": "^0.34.30",
     "@nx/plugin": "20.6.2",
+    "@sinclair/typebox": "^0.34.30",
+    "tslib": "^2.3.0",
     "tsx": "^4.19.3"
   },
   "generators": "./generators.json",
