@@ -1,0 +1,19 @@
+{
+  "generators": {
+    "configuration": {
+      "factory": "./src/generators/configuration/configuration",
+      "schema": "./src/generators/configuration/schema.json",
+      "description": "configuration generator"
+    },
+    "generator": {
+      "factory": "./src/generators/generator/generator",
+      "schema": "./src/generators/generator/schema.json",
+      "description": "generator generator"
+    },
+    "executor": {
+      "factory": "./src/generators/executor/executor",
+      "schema": "./src/generators/executor/schema.json",
+      "description": "executor generator"
+    }
+  }
+}

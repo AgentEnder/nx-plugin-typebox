@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "extract-schema": {
+      "implementation": "./src/executors/extract-schema/extract-schema",
+      "schema": "./src/executors/extract-schema/schema.json",
+      "description": "extract-schema executor"
+    }
+  }
+}

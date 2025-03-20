@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "project": {
+      "description": "The name of the plugin project to setup.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What project would you like to add typebox support to?",
+      "type": "string"
+    },
+    "targetName": {
+      "default": "extract-schema",
+      "type": "string"
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "default": false,
+      "x-priority": "internal",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project",
+    "targetName",
+    "skipFormat"
+  ]
+}

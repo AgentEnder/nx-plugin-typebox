@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "exportName": {
+      "default": "JSONSchema",
+      "description": "The name of the export in the schema file which contains the raw JSON schema.",
+      "type": "string"
+    },
+    "schemaFile": {
+      "description": "The file path to the typescript file containing the schema. Relative to the executor/generator's root directory. For example, `schema.ts` would be the proper value if your plugin contains generators laid out as `./src/generators/[generator-name]/(schema.ts|schema.json)`.",
+      "default": "schema.ts",
+      "type": "string"
+    }
+  },
+  "required": [
+    "exportName",
+    "schemaFile"
+  ]
+}

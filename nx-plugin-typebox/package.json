@@ -1,0 +1,15 @@
+{
+  "name": "nx-plugin-typebox",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@nx/devkit": "20.6.2",
+    "tslib": "^2.3.0",
+    "@sinclair/typebox": "^0.34.30",
+    "@nx/plugin": "20.6.2"
+  },
+  "generators": "./generators.json",
+  "executors": "./executors.json"
+}
