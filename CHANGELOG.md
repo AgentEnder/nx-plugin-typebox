@@ -1,3 +1,13 @@
+## 0.1.2 (2025-03-21)
+
+### 🩹 Fixes
+
+- **nx-plugin-typebox:** generators should work when using custom schemaFile or exportName ([cf3c10a](https://github.com/agentender/nx-plugin-typebox/commit/cf3c10a))
+
+### ❤️ Thank You
+
+- AgentEnder @AgentEnder
+
 ## 0.1.1 (2025-03-20)
 
 ### 🩹 Fixes
