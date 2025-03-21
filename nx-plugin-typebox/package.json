@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/agentender/nx-plugin-typebox"
+    "url": "git+https://github.com/AgentEnder/nx-plugin-typebox"
   },
   "type": "commonjs",
   "main": "./src/index.js",

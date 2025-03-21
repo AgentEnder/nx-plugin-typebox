@@ -18,6 +18,14 @@ configuration generator
 
 Default: `"extract-schema"`
 
+### exportName
+
+- (string): The name of the export in the schema file which contains the raw JSON schema.
+
+### schemaFile
+
+- (string): The name of the file to write the typebox schema into.
+
 ### skipFormat
 
 - (boolean): Skip formatting files.

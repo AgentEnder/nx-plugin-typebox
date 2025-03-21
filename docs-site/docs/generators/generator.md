@@ -4,7 +4,9 @@ title: nx-plugin-typebox:generator
 
 # nx-plugin-typebox:generator
 
-generator generator
+## Generator Generator
+
+Generates a generator setup with typebox for a plugin.
 
 ## Options
 

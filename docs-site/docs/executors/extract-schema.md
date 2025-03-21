@@ -4,7 +4,9 @@ title: nx-plugin-typebox:extract-schema
 
 # nx-plugin-typebox:extract-schema
 
-extract-schema executor
+## Extract Schema Executor
+
+Extracts the JSON schema from the schema file.
 
 ## Options
 
