@@ -2,6 +2,9 @@
   "title": "Generator Generator",
   "description": "Generates a generator setup with typebox for a plugin.",
   "type": "object",
+  "required": [
+    "path"
+  ],
   "properties": {
     "path": {
       "description": "The file path to the generator. Relative to the current working directory.",
@@ -42,8 +45,5 @@
       "description": "Do not add an eslint configuration for plugin json files.",
       "type": "boolean"
     }
-  },
-  "required": [
-    "path"
-  ]
+  }
 }
