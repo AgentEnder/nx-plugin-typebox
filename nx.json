@@ -52,9 +52,8 @@
     "version": {
       "conventionalCommits": true,
       "preVersionCommand": "npx nx run-many --target=build --exclude=docs-site",
-      "generatorOptions": {
-        "packageRoot": "dist/{projectName}"
-      }
+      "preserveLocalDependencyProtocols": false,
+      "manifestRootsToUpdate": ["dist/{projectName}"]
     },
     "changelog": {
       "workspaceChangelog": {
