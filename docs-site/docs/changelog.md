@@ -5,6 +5,16 @@ hide_title: true
 sidebar_position: 2
 slug: /changelog
 ---
+## 0.1.3 (2025-03-21)
+
+### 🩹 Fixes
+
+- provenance data should match ([f2e8aeb](https://github.com/agentender/nx-plugin-typebox/commit/f2e8aeb))
+
+### ❤️ Thank You
+
+- AgentEnder @AgentEnder
+
 ## 0.1.2 (2025-03-21)
 
 ### 🩹 Fixes

@@ -1,5 +1,9 @@
 {
   "type": "object",
+  "required": [
+    "path",
+    "includeHasher"
+  ],
   "properties": {
     "path": {
       "description": "The file path to the executor. Relative to the current working directory.",
@@ -45,9 +49,5 @@
       "description": "Should the boilerplate for a custom hasher be generated?",
       "type": "boolean"
     }
-  },
-  "required": [
-    "path",
-    "includeHasher"
-  ]
+  }
 }

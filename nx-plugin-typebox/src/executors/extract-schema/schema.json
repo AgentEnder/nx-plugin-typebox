@@ -2,6 +2,10 @@
   "title": "Extract Schema Executor",
   "description": "Extracts the JSON schema from the schema file.",
   "type": "object",
+  "required": [
+    "exportName",
+    "schemaFile"
+  ],
   "properties": {
     "exportName": {
       "default": "JSONSchema",
@@ -13,9 +17,5 @@
       "default": "schema.ts",
       "type": "string"
     }
-  },
-  "required": [
-    "exportName",
-    "schemaFile"
-  ]
+  }
 }

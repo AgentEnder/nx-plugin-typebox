@@ -1,5 +1,9 @@
 {
   "type": "object",
+  "required": [
+    "project",
+    "targetName"
+  ],
   "properties": {
     "project": {
       "description": "The name of the plugin project to setup.",
@@ -28,9 +32,5 @@
       "x-priority": "internal",
       "type": "boolean"
     }
-  },
-  "required": [
-    "project",
-    "targetName"
-  ]
+  }
 }
