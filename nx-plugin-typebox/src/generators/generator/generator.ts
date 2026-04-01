@@ -3,13 +3,11 @@ import {
   joinPathFragments,
   names,
   Tree,
-  workspaceRoot,
 } from '@nx/devkit';
 import { determineArtifactNameAndDirectoryOptions } from '@nx/devkit/src/generators/artifact-name-and-directory-utils';
 import { GeneratorGeneratorSchema } from './schema';
 
 import { generatorGenerator as nxGeneratorGenerator } from '@nx/plugin/generators';
-import { relative } from 'path';
 import { ensureConfiguration } from '../configuration/configuration';
 import { findProjectByInnerPath } from '../utils/find-project-by-inner-path';
 
@@ -17,17 +15,27 @@ export async function generatorGenerator(
   tree: Tree,
   options: GeneratorGeneratorSchema
 ) {
-  const cwdRelativeToWorkspaceRoot = relative(workspaceRoot, process.cwd());
-  const generatorRootPath = joinPathFragments(
-    cwdRelativeToWorkspaceRoot,
-    options.path,
-    '..'
-  );
+  const {
+    artifactName: generatorName,
+    directory: initialDirectory,
+  } = await determineArtifactNameAndDirectoryOptions(tree, options);
+
+  // Replicate the nesting logic from @nx/plugin's normalizeOptions:
+  // if the last path segment matches the artifact name and has no file extension,
+  // Nx treats it as a directory path and nests the artifact inside it.
+  let generatorRootPath = initialDirectory;
+  const normalizedPath = options.path.replace(/^\.?\//, '').replace(/\/$/, '');
+  const lastSegment = normalizedPath.split('/').pop();
+  const knownFileExtensions = ['.ts', '.js', '.jsx', '.tsx'];
+  if (
+    !knownFileExtensions.some((ext) => lastSegment.endsWith(ext)) &&
+    lastSegment === generatorName
+  ) {
+    generatorRootPath = joinPathFragments(initialDirectory, generatorName);
+  }
+
   const projectName = findProjectByInnerPath(tree, generatorRootPath);
   const config = await ensureConfiguration(tree, projectName);
-
-  const { artifactName: generatorName } =
-    await determineArtifactNameAndDirectoryOptions(tree, options);
 
   const { className, fileName } = names(generatorName);
 
