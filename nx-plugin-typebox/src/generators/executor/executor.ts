@@ -1,7 +1,6 @@
 import { formatFiles, joinPathFragments, names, Tree } from '@nx/devkit';
 import { ExecutorGeneratorSchema } from './schema';
 import { executorGenerator as nxExecutorGenerator } from '@nx/plugin/generators';
-import { relative } from 'path';
 import { ensureConfiguration } from '../configuration/configuration';
 import { findProjectByInnerPath } from '../utils/find-project-by-inner-path';
 import { determineArtifactNameAndDirectoryOptions } from '@nx/devkit/src/generators/artifact-name-and-directory-utils';
@@ -10,17 +9,27 @@ export async function executorGenerator(
   tree: Tree,
   options: ExecutorGeneratorSchema
 ) {
-  const cwdRelativeToWorkspaceRoot = relative(tree.root, process.cwd());
-  const executorRootPath = joinPathFragments(
-    cwdRelativeToWorkspaceRoot,
-    options.path,
-    '..'
-  );
+  const {
+    artifactName: executorName,
+    directory: initialDirectory,
+  } = await determineArtifactNameAndDirectoryOptions(tree, options);
+
+  // Replicate the nesting logic from @nx/plugin's normalizeOptions:
+  // if the last path segment matches the artifact name and has no file extension,
+  // Nx treats it as a directory path and nests the artifact inside it.
+  let executorRootPath = initialDirectory;
+  const normalizedPath = options.path.replace(/^\.?\//, '').replace(/\/$/, '');
+  const lastSegment = normalizedPath.split('/').pop();
+  const knownFileExtensions = ['.ts', '.js', '.jsx', '.tsx'];
+  if (
+    !knownFileExtensions.some((ext) => lastSegment.endsWith(ext)) &&
+    lastSegment === executorName
+  ) {
+    executorRootPath = joinPathFragments(initialDirectory, executorName);
+  }
+
   const projectName = findProjectByInnerPath(tree, executorRootPath);
   const config = await ensureConfiguration(tree, projectName);
-
-  const { artifactName: executorName } =
-    await determineArtifactNameAndDirectoryOptions(tree, options);
 
   const { className, fileName } = names(executorName);
 

@@ -41,14 +41,14 @@ describe('nx-plugin-typebox', () => {
       }
     );
     execSync(
-      `npx nx g nx-plugin-typebox:generator packages/${pluginName}/src/generators/test/test --no-interactive`,
+      `npx nx g nx-plugin-typebox:generator packages/${pluginName}/src/generators/test --no-interactive`,
       {
         cwd: projectDirectory,
         stdio: 'inherit',
       }
     );
     execSync(
-      `npx nx g nx-plugin-typebox:executor packages/${pluginName}/src/executors/test/test --no-interactive`,
+      `npx nx g nx-plugin-typebox:executor packages/${pluginName}/src/executors/test --no-interactive`,
       {
         cwd: projectDirectory,
         stdio: 'inherit',
@@ -97,14 +97,14 @@ describe('nx-plugin-typebox', () => {
       }
     );
     execSync(
-      `npx nx g nx-plugin-typebox:generator packages/${pluginName}/src/generators/test/test --no-interactive`,
+      `npx nx g nx-plugin-typebox:generator packages/${pluginName}/src/generators/test --no-interactive`,
       {
         cwd: projectDirectory,
         stdio: 'inherit',
       }
     );
     execSync(
-      `npx nx g nx-plugin-typebox:executor packages/${pluginName}/src/executors/test/test --no-interactive`,
+      `npx nx g nx-plugin-typebox:executor packages/${pluginName}/src/executors/test --no-interactive`,
       {
         cwd: projectDirectory,
         stdio: 'inherit',
